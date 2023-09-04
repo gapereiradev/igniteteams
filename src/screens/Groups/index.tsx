@@ -1,21 +1,27 @@
 import { Header } from "@components/Header";
 import { Container } from "./styles";
-import HighLight from "@components/Highlight";
+import { Highlight } from "@components/Highlight";
 import { GroupCard } from "@components/GroupCard";
 import { useState } from "react";
 import { FlatList } from "react-native";
 import { ListEmpty } from "@components/ListEmpty";
 import { Button } from "@components/Button";
+import { useNavigation } from "@react-navigation/native";
 
-export default function Groups() {
+export function Groups() {
   const [groups,setGroups] = useState<string[]>(['Galera do front','Galera do back']);
 
+  const navigation = useNavigation();
+
+  function handleNewGroup(){
+    navigation.navigate('new');
+  }
 
   return (
     <Container>
       <Header />
 
-      <HighLight
+      <Highlight
         title="Turmas"
         subtitle="Jogue com a sua turma"
       />
@@ -38,7 +44,7 @@ export default function Groups() {
       />
       <Button 
         title={"Criar Nova Turma" }
-     
+        onPress={handleNewGroup}
       />
     </Container>
   );
